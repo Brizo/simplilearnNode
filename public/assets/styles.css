@@ -1,0 +1,20 @@
+body {
+    background: #F0FFFF;
+}
+
+img {
+    height: 100px;
+    width: 200px;
+}
+
+#productCard {
+    width: 200px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#cart {
+    color: black;
+    font-weight: bold;
+}

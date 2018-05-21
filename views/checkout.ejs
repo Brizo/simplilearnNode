@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Product Items</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/styles.css">
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="/assets/checkoutCtrl.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <% include partials/nav %>
+        <div class="container">
+            <h2><center>Checkout</center></h2>
+            <hr>
+            <div class="row">
+               <div class="col-md-6 col-md-offset-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" id="msg"></h5>
+                            <p id="cartItems"></p>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+        
+        <% include partials/footer %>
+    </body>
+</html>
+

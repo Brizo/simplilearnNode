@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>Product Items</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/styles.css">
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="/assets/itemCtrl.js"></script>
+        <script>
+            // capture selected item
+            function addToCart (price, name){
+                var price = Number(price);
+                var cart = JSON.parse(localStorage.getItem("cart"));
+                var obj = {name:name, price:price};
+                if (cart) {
+                    cart.push(obj);
+                } else {
+                    var cart = new Array();
+                    cart.push(obj);
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                var currentCartVal = Number(document.getElementById("cartTotal").innerHTML);
+                var newCartVal = currentCartVal + price;
+                document.getElementById("cartTotal").innerHTML = newCartVal.toFixed(2);
+            }
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <% include partials/nav %>
+        <div class="container">
+            <h2><center>Welcome to your online music store</center></h2>
+            <hr>
+            <div class="row">
+                <div class="col col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Categories</h5>
+                            <br>
+                            <div class="card">
+                                <ul class="list-group list-group-flush">
+                                    <% for(var i = 0; i<categories.length; i++) {%>
+                                        <li class="list-group-item"><a href="#" class="category"><%= categories[i] %></a></li>
+                                    <% } %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Product Items</h5>
+                            <br>
+
+                            <% for(var i = 0; i<items.length; i++) {%>
+                                <div class="card" id="productCard">
+                                    <img class="card-img-top" src="assets/product.png" alt="Product Image">
+                                    <div class="card-body">
+                                        <h5 class="card-title itemName"><%= items[i].name %></h5>
+                                        <p class="card-text">
+                                            <table>
+                                                <tr><th>Price</th><td>:</td><td id="itemPrice"><%= items[i].price %></td></tr>
+                                                <tr><th>Description</th><td>:</td><td><%= items[i].description %></td></tr>
+                                            </table> 
+                                        </p>
+                                        <a href="#" class="btn btn-primary" onclick="addToCart('<%= items[i].price %>','<%= items[i].name %>')">Add To Cart</a>
+                                    </div>
+                                </div>
+                            <% } %>                            
+                        </div>
+                    </div>
+                    <br>                    
+                    <a href="/checkout" class="btn btn-lg btn-success">Checkout</a>
+                <div class="col col-md-2">
+            </div>
+        </div>
+        
+        <% include partials/footer %>
+    </body>
+</html>
+
